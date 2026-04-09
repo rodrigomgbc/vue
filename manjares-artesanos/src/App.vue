@@ -137,14 +137,14 @@ export default {
           image: './public/imagenes/productos/atun.jpg'
         },
         {
-          id: 'string-unico-sin-espacios',
-          name: 'Nombre visible del producto',
-          category: 'Categoría',
-          origin: 'Lugar de origen',
-          description: 'Descripción breve y elegante del producto',
-          icon: '🔤',
+          id: 'mermeladas',
+          name: 'Mermeladas artesanales Jimena',
+          category: 'Conservas',
+          origin: 'Cantabria · España',
+          description: 'Mermeladas artesanales de temporada. Sabor intenso y textura suave.',
+          icon: '🍓',
           color: '#xxxxxx',
-          image: ''
+          image: './public/imagenes/productos/mermeladas.png'
         }
       ]
     }

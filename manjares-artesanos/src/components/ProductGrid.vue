@@ -188,7 +188,7 @@ export default {
 .product-card__origin {
   display: block;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -206,9 +206,9 @@ export default {
 
 .product-card__desc {
   font-family: var(--font-serif);
-  font-size: 14px;
+  font-size: 16px;
   font-style: italic;
-  color: var(--color-ink-muted);
+  color: var(--color-ink);
   line-height: 1.55;
   margin-bottom: 18px;
 }
