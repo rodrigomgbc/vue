@@ -44,7 +44,7 @@ export default {
 
   computed: {
   logoSrc() {
-    return '/logo.png'
+    return '/imagenes/logo.png'
   }
 },
 

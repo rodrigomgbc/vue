@@ -52,7 +52,6 @@ export default {
       categorias:  categorias,
       productos:   [...productosIniciales],
 
-      // Filtros activos en cada momento
       filtros: {
         categoriaId:  null,
         precioMax:    180000,
@@ -62,7 +61,6 @@ export default {
   },
 
   computed: {
-    // Lista filtrada que se pasa a ProductList
     productosFiltrados() {
       return this.productos.filter((p) => {
         const porCategoria   = !this.filtros.categoriaId  || p.categoriaId === this.filtros.categoriaId
@@ -74,17 +72,14 @@ export default {
   },
 
   methods: {
-    // Recibe los filtros del SidebarMenu y los guarda
     aplicarFiltros(nuevosFiltros) {
       this.filtros = nuevosFiltros
     },
 
-    // Filtra por categoría al pulsar en la cabecera
     filtrarPorCategoria(categoriaId) {
       this.filtros.categoriaId = categoriaId
     },
 
-    // Elimina un producto por su id
     eliminarProducto(id) {
       this.productos = this.productos.filter((p) => p.id !== id)
     },

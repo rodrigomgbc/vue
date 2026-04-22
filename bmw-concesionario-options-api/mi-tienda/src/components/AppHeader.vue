@@ -1,41 +1,18 @@
 <template>
-  <v-app-bar color="blue-darken-3" elevation="2">
+   <v-app-bar colo="blue-darken-3" elevation="2" dark>
+
+    <!-- Icono a la izquierda que lleva al home -->
+    <v-btn icon to="/" variant="text" colo="white" class="ml-1">
+      <v-icon icon="mdi-home" size="28" />
+    </v-btn>
+   </v-app-bar>
+
+    <!-- Nombre de la tienda -->
     <v-app-bar-title>
-      <v-icon icon="mdi-car" class="mr-2" />
-      Concesionario BMW
+      <router-link to="/" class="text-white text-decoration-none font-weight-bold">
+        Concesionario BMW
+      </router-link>
     </v-app-bar-title>
 
-    <v-spacer />
-
-    <!-- Una pestaña por cada categoría -->
-    <v-btn
-      v-for="cat in categorias"
-      :key="cat.id"
-      variant="text"
-      color="white"
-      @click="$emit('seleccionar-categoria', cat.id)"
-    >
-      {{ cat.nombre }}
-    </v-btn>
-
-    <!-- Botón para ver todos -->
-    <v-btn variant="text" color="white" @click="$emit('seleccionar-categoria', null)">
-      Todos
-    </v-btn>
-  </v-app-bar>
+    
 </template>
-
-<script>
-export default {
-  name: 'AppHeader',
-
-  props: {
-    categorias: {
-      type: Array,
-      required: true,
-    },
-  },
-
-  emits: ['seleccionar-categoria'],
-}
-</script>
