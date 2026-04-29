@@ -9,7 +9,7 @@
     "@mdi/font": "^7.4.47",
     "pinia": "^3.0.4",
     "vue": "^3.4.0",
-    "vue-router": "^5.0.4",
+    "vue-router": "^5.0.6",
     "vuetify": "^3.5.0"
   },
   "devDependencies": {

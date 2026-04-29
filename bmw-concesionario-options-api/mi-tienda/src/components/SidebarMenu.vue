@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer permanent width="250">
+  <v-navigation-drawer permanent app width="250">
 
     <v-list-item
       title="Filtros"
