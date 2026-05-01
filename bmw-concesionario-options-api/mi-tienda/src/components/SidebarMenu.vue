@@ -46,6 +46,21 @@
         class="mb-4"
       />
 
+      <!-- Ordenación por precio -->
+      <p class="text-subtitle-2 font-weight-bold mb-2">Ordenar por precio</p>
+      <v-btn-toggle
+        v-model="ordenPrecio"
+        mandatory
+        color="blue-darken-3"
+        variant="outlined"
+        density="compact"
+        class="mb-4"
+        style="width: 100%"
+      >
+      <v-btn value="asc" size="small" style="width: 50%">↑ Menor</v-btn>
+      <v-btn value="desc" size="small" style="width: 50%">↓ Mayor</v-btn>
+      </v-btn-toggle>
+
       <!-- Botón limpiar filtros -->
       <v-btn
         block
@@ -79,6 +94,7 @@ export default {
       categoriaSeleccionada: null,
       precioMax: 180000,
       combustibleSeleccionado: null,
+      ordenPrecio: 'asc',
     }
   },
 
@@ -94,6 +110,7 @@ export default {
     categoriaSeleccionada() { this.emitirFiltros() },
     precioMax()             { this.emitirFiltros() },
     combustibleSeleccionado() { this.emitirFiltros() },
+    ordenPrecio()           { this.emitirFiltros() },
   },
 
   methods: {
@@ -102,6 +119,7 @@ export default {
         categoriaId:  this.categoriaSeleccionada,
         precioMax:    this.precioMax,
         combustible:  this.combustibleSeleccionado,
+        ordenPrecio:  this.ordenPrecio,
       })
     },
 
@@ -109,6 +127,7 @@ export default {
       this.categoriaSeleccionada    = null
       this.precioMax                = 180000
       this.combustibleSeleccionado  = null
+      this.ordenPrecio              = 'asc'
     },
 
     formatearPrecio(valor) {

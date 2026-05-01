@@ -56,7 +56,8 @@ onMounted(async () => {
 const filtros = ref({
   categoriaId: null,
   precioMax: 180000,
-  combustible: null
+  combustible: null,
+  ordenPrecio: 'asc'
 })
 
 watch(
@@ -72,11 +73,16 @@ const aplicarFiltros = (nuevosFiltros) => {
 }
 
 const productosFiltrados = computed(() => {
-  return productos.value.filter((p) => {
-    const porCategoria = !filtros.value.categoriaId || p.categoriaId === filtros.value.categoriaId
-    const porPrecio = p.precio <= filtros.value.precioMax
-    const porCombustible = !filtros.value.combustible || p.combustible === filtros.value.combustible
-    return porCategoria && porPrecio && porCombustible
-  })
+  return productos.value
+    .filter((p) => {
+      const porCategoria = !filtros.value.categoriaId || p.categoriaId === filtros.value.categoriaId
+      const porPrecio = p.precio <= filtros.value.precioMax
+      const porCombustible = !filtros.value.combustible || p.combustible === filtros.value.combustible
+      return porCategoria && porPrecio && porCombustible
+    })
+    .sort((a, b) => {
+      return filtros.value.ordenPrecio === 'asc' ? a.precio - b.precio : b.precio - a.precio
+    })
 })
+
 </script>
