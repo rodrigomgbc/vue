@@ -1,5 +1,5 @@
 <template>
-  <v-footer color="blue-darken-3" class="text-center py-3">
+<v-footer color="blue-darken-3" class="text-center py-3" style="width: 100%; display: block;">
     <v-col class="text-white">
 
       <!-- Nombre de la tienda-->

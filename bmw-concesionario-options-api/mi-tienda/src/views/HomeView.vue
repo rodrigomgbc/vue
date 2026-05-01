@@ -24,14 +24,23 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { categorias } from '../data/categorias.js'
-import { productosIniciales } from '../data/productos.js'
+import { ref, computed, onMounted } from 'vue'
 import CategoryBoard from '../components/CategoryBoard.vue'
 import ProductList from '../components/ProductList.vue'
 
+const categorias = ref([])
+const productos = ref([])
+
+onMounted(async () => {
+  const resCat = await fetch('/data/categorias.json')
+  categorias.value = await resCat.json()
+
+  const resProd = await fetch('/data/productos.json')
+  productos.value = await resProd.json()
+})
+
 const productosAleatorios = computed(() => {
-  return [...productosIniciales]
+  return [...productos.value]
     .sort(() => Math.random() - 0.5)
     .slice(0, 4)
 })

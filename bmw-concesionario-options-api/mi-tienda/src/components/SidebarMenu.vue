@@ -1,6 +1,5 @@
 <template>
-  <v-navigation-drawer permanent app width="250">
-
+<v-card width="250" rounded="0" elevation="1" style="position: sticky; top: 0; height: 100vh; overflow-y: auto;">
     <v-list-item
       title="Filtros"
       prepend-icon="mdi-filter"
@@ -59,7 +58,7 @@
       </v-btn>
 
     </div>
-  </v-navigation-drawer>
+  </v-card>
 </template>
 
 <script>

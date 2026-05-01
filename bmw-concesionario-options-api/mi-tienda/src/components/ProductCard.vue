@@ -1,7 +1,6 @@
 <template>
   <v-card elevation="2" rounded="lg" height="100%">
 
-    <!-- Imagen del coche -->
     <v-img :src="producto.imagen" height="180" cover>
       <template #error>
         <v-sheet height="180" color="grey-lighten-3" class="d-flex align-center justify-center">
@@ -10,18 +9,15 @@
       </template>
     </v-img>
 
-    <!-- Nombre -->
     <v-card-title class="text-body-1 font-weight-bold pt-3" style="white-space: normal;">
       {{ producto.nombre }}
     </v-card-title>
 
-    <!-- Chips de marca y combustible -->
     <v-card-subtitle>
       <v-chip size="small" color="blue-darken-3" class="mr-1">{{ producto.marca }}</v-chip>
       <v-chip size="small" variant="outlined">{{ producto.combustible }}</v-chip>
     </v-card-subtitle>
 
-    <!-- Precios -->
     <v-card-text>
       <v-row dense class="mt-1">
         <v-col cols="6">
@@ -37,20 +33,27 @@
           </div>
         </v-col>
       </v-row>
+      <v-row dense class="mt-1">
+        <v-col cols="12">
+          <div class="text-caption text-grey">Con descuento ({{ producto.descuento }}%)</div>
+          <div class="text-body-1 font-weight-medium text-green-darken-2">
+            {{ formatearPrecio(precioConDescuento) }}
+          </div>
+        </v-col>
+      </v-row>
     </v-card-text>
 
-    <!-- Botones -->
     <v-card-actions>
       <v-btn color="blue-darken-3" variant="tonal" size="small" prepend-icon="mdi-information-outline">
         Ver más
       </v-btn>
       <v-spacer />
       <v-btn
-        icon="mdi-delete"
-        color="red"
+        :icon="esFavorito ? 'mdi-heart' : 'mdi-heart-outline'"
+        :color="esFavorito ? 'red' : 'grey'"
         variant="text"
         size="small"
-        @click="emitirEliminar"
+        @click="toggleFavorito"
       />
     </v-card-actions>
 
@@ -58,6 +61,8 @@
 </template>
 
 <script>
+import { useFavoritosStore } from '../stores/favoritos'
+
 export default {
   name: 'ProductCard',
 
@@ -68,18 +73,29 @@ export default {
     },
   },
 
-  emits: ['eliminar'],
-
   computed: {
-    // Dato calculado: precio con IVA del 21%
     precioConIVA() {
       return Math.round(this.producto.precio * 1.21)
+    },
+
+    precioConDescuento() {
+      return Math.round(this.producto.precio * (1 - this.producto.descuento / 100))
+    },
+
+    esFavorito() {
+      const store = useFavoritosStore()
+      return store.esFavorito(this.producto.id)
     },
   },
 
   methods: {
-    emitirEliminar() {
-      this.$emit('eliminar', this.producto.id)
+    toggleFavorito() {
+      const store = useFavoritosStore()
+      if (store.esFavorito(this.producto.id)) {
+        store.eliminarFavorito(this.producto.id)
+      } else {
+        store.agregarFavorito(this.producto)
+      }
     },
 
     formatearPrecio(valor) {
